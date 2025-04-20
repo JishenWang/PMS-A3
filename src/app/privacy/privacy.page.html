@@ -1,0 +1,51 @@
+<!-- src/app/privacy/privacy.page.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Privacy & Security</ion-title>
+    <ion-buttons slot="end">
+      <ion-button id="help-button" (click)="presentHelp()">
+        <ion-icon slot="icon-only" name="help-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Privacy Policy</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Our Inventory Management System is committed to protecting your data privacy and security.</p>
+      
+      <h3>Data Collection</h3>
+      <p>We collect the following information for inventory management purposes:</p>
+      <ul>
+        <li>Item details (name, category, quantity, price)</li>
+        <li>Supplier information</li>
+        <li>Stock status</li>
+      </ul>
+      
+      <h3>Data Security</h3>
+      <p>We implement the following security measures:</p>
+      <ul>
+        <li>All data transmissions are encrypted using HTTPS</li>
+        <li>Authentication required for all database operations</li>
+        <li>Input validation to prevent injection attacks</li>
+        <li>Role-based access control for sensitive operations</li>
+      </ul>
+      
+      <h3>Data Retention</h3>
+      <p>Inventory records are retained as long as they are needed for business operations. 
+      Archived records are securely stored and can be deleted upon request.</p>
+      
+      <h3>User Rights</h3>
+      <p>You have the right to:</p>
+      <ul>
+        <li>Access your inventory data</li>
+        <li>Request correction of inaccurate data</li>
+        <li>Request deletion of unnecessary data (except core records)</li>
+      </ul>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
