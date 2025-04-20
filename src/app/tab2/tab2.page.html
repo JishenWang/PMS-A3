@@ -1,96 +1,17 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Add & Featured Items</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="presentHelp()">
-        <ion-icon slot="icon-only" name="help-circle"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <ion-title>
+      Tab 2
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Add New Item</ion-card-title>
-    </ion-card-header>
-    
-    <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <ion-label position="stacked">Item Name*</ion-label>
-          <ion-input [(ngModel)]="newItem.item_name" required></ion-input>
-        </ion-item>
-        
-        <ion-item>
-          <ion-label position="stacked">Category*</ion-label>
-          <ion-select [(ngModel)]="newItem.category" interface="popover">
-            <ion-select-option *ngFor="let cat of categories" [value]="cat">{{cat}}</ion-select-option>
-          </ion-select>
-        </ion-item>
-        
-        <!-- Quantity -->
-        <ion-item>
-          <ion-label position="stacked">Quantity*</ion-label>
-          <ion-input type="number" [(ngModel)]="newItem.quantity" min="1" required></ion-input>
-        </ion-item>
-        
-        <ion-item>
-          <ion-label position="stacked">Price*</ion-label>
-          <ion-input type="number" [(ngModel)]="newItem.price" min="1" required></ion-input>
-        </ion-item>
-        
-        <ion-item>
-          <ion-label position="stacked">Supplier Name*</ion-label>
-          <ion-input [(ngModel)]="newItem.supplier_name" required></ion-input>
-        </ion-item>
-        
-        <ion-item>
-          <ion-label position="stacked">Stock Status*</ion-label>
-          <ion-select [(ngModel)]="newItem.stock_status" interface="popover">
-            <ion-select-option *ngFor="let status of stockStatuses" [value]="status">{{status}}</ion-select-option>
-          </ion-select>
-        </ion-item>
-        
-        <ion-item>
-          <ion-label>Featured Item</ion-label>
-          <ion-toggle [(ngModel)]="newItem.featured_item" [ngModelOptions]="{standalone: false}" 
-                     (ionChange)="newItem.featured_item = $event.detail.checked ? 1 : 0"></ion-toggle>
-        </ion-item>
-        
-        <ion-item>
-          <ion-label position="stacked">Special Note</ion-label>
-          <ion-textarea [(ngModel)]="newItem.special_note" rows="3"></ion-textarea>
-        </ion-item>
-      </ion-list>
-      
-      <ion-button expand="block" (click)="addItem()" class="ion-margin-top">Add Item</ion-button>
-    </ion-card-content>
-  </ion-card>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tab 2</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-  <ion-card *ngIf="featuredItems.length > 0">
-    <ion-card-header>
-      <ion-card-title>Featured Items</ion-card-title>
-    </ion-card-header>
-    
-    <ion-card-content>
-      <ion-list>
-        <ion-item *ngFor="let item of featuredItems">
-          <ion-label>
-            <h2>{{item.item_name}}</h2>
-            <p>Category: {{item.category}}</p>
-            <p>Quantity: {{item.quantity}} | Price: ${{item.price}}</p>
-            <p>Status: {{item.stock_status}}</p>
-            <p *ngIf="item.special_note">Note: {{item.special_note}}</p>
-          </ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
-  
-  <ion-card *ngIf="featuredItems.length === 0 && !mockApi">
-    <ion-card-content>
-      <p>No featured items found.</p>
-    </ion-card-content>
-  </ion-card>
+  <app-explore-container name="Tab 2 page"></app-explore-container>
 </ion-content>
