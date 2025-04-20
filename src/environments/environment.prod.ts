@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: false,
+  apiUrl: 'https://prog2005.it.scu.edu.au/ArtGalley'
 };
