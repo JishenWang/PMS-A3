@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-
+// 定义库存商品接口
 interface InventoryItem {
   item_id?: number;        
   item_name: string;       
@@ -20,7 +20,7 @@ interface InventoryItem {
   styleUrls: ['tab2.page.scss'],
   standalone: false
 })
-export class Tab2Page {
+export class Tab2Page {  // 新商品对象
   newItem: InventoryItem = {
     item_name: '',
     category: 'Electronics',
@@ -37,14 +37,14 @@ export class Tab2Page {
   
   private apiUrl = 'https://prog2005.it.scu.edu.au/ArtGalley';
   mockApi = false;
-
+// 注入服务
   constructor(
     private http: HttpClient, 
     private alertController: AlertController
   ) {
     this.loadFeaturedItems();
   }
-
+ // 加载特色商品
   loadFeaturedItems() {
     if (this.mockApi) {
       this.featuredItems = [{
@@ -69,10 +69,10 @@ export class Tab2Page {
       }
     });
   }
-
+ // 添加商品
   addItem() {
     if (!this.validateItem()) return;
-
+// 准备要提交的数据
     const postData = {
       item_name: this.newItem.item_name.trim(),
       category: this.newItem.category,
