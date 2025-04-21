@@ -1,17 +1,60 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Inventory Management System</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="showHelp()">
+        <ion-icon name="help-circle-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <!-- Search bar -->
+  <ion-searchbar
+    [(ngModel)]="searchTerm"
+    (ionInput)="filterItems()"
+    placeholder="Search items by name"
+    animated
+    debounce="300"
+    class="search-bar">
+  </ion-searchbar>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
-</ion-content>
+  <!-- Inventory list -->
+  <ion-list lines="full">
+    <ion-item *ngFor="let item of filteredItems" class="inventory-item">
+      <ion-icon 
+        slot="start" 
+        [name]="getCategoryIcon(item.category)" 
+        [color]="getStatusColor(item.stock_status)">
+      </ion-icon>
+      
+      <ion-label>
+        <h2>{{ item.item_name || 'Unnamed item' }}</h2>
+        <p><ion-icon name="pricetag-outline"></ion-icon> {{ item.category }} | <ion-icon name="business-outline"></ion-icon> {{ item.supplier_name }}</p>
+        <p><ion-icon name="cube-outline"></ion-icon> {{ item.quantity }} | <ion-icon name="cash-outline"></ion-icon> ${{ item.price }}</p>
+        <ion-note *ngIf="item.special_note && item.special_note !== '-'">
+          <ion-icon name="document-text-outline"></ion-icon> {{ item.special_note }}
+        </ion-note>
+      </ion-label>
+      
+      <ion-badge [color]="getStatusColor(item.stock_status)" slot="end">
+        {{ item.stock_status }}
+      </ion-badge>
+    </ion-item>
+  </ion-list>
+
+  <!-- Empty state prompt -->
+  <div class="empty-state" *ngIf="filteredItems.length === 0">
+    <ion-icon name="search-outline" class="empty-icon"></ion-icon>
+    <p>{{ searchTerm ? 'No matching items found' : 'Inventory is loading...' }}</p>
+    <ion-button 
+      *ngIf="searchTerm" 
+      fill="clear" 
+      (click)="clearSearch()"
+      class="reset-button">
+      <ion-icon slot="start" name="refresh-outline"></ion-icon>
+      Reset search
+    </ion-button>
+  </div>
+</ion-content> 
